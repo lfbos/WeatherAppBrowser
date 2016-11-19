@@ -9,8 +9,19 @@ module.exports = {
 			? false
 			: true
 	},
-	entry: ['./app/app.jsx'],
+	entry: [
+		'script!jquery/dist/jquery.min.js',
+		'script!bootstrap/dist/js/bootstrap.min.js',
+		'./app/app.jsx'
+	],
+	externals: {
+		jquery: 'jQuery'
+	},
 	plugins: [
+		new webpack.ProvidePlugin({
+			'$': 'jquery',
+			'jQuery': 'jquery'
+		}),
 		new webpack.optimize.UglifyJsPlugin({
 			compressor: {
 				warnings: false
@@ -66,6 +77,12 @@ module.exports = {
 				test: /\.(jpe?g|png|gif|svg)$/i,
 				loaders: ['file?hash=sha512&digest=hex&name=[hash].[ext]', 'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false']
 			}
+		]
+	},
+	cssLoader: {
+		includePaths: [
+			path.resolve(__dirname,
+			'./node_modules/bootstrap/dist/css')
 		]
 	},
 	devtool: process.env.NODE_ENV === 'production'
