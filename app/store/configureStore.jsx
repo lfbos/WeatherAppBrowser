@@ -6,7 +6,7 @@ import {fetchWeatherReducer}  from 'reducers';
 
 export var configure = (initialState = {}) => {
  var reducer = redux.combineReducers({
-  fetchWeather: fetchWeatherReducer
+  weather: fetchWeatherReducer
  });
  const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
  var store = redux.createStore(reducer, initialState, composeEnhancers(  redux.applyMiddleware(thunk), redux.applyMiddleware(ReduxPromise)
