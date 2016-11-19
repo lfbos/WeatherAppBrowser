@@ -1,7 +1,12 @@
-export var showMessageReducer = (state = false, action) => {
+import { FETCH_WEATHER } from 'actions';
+
+export const fetchWeatherReducer = (state = [], action) => {
  switch (action.type) {
-  case 'TOGGLE_MESSAGE':
-   return !state;
+  case FETCH_WEATHER:
+   return [
+    ...state,
+    action.request.data
+   ]
    break;
   default:
    return state;
