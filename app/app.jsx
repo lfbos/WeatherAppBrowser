@@ -8,6 +8,8 @@ import router from 'app/router/';
 
 const store = configure();
 
+require('style!css!sass!applicationStyles');
+
 ReactDOM.render(
   <Provider store={store}>
     {router}
