@@ -5,7 +5,7 @@ export const fetchWeatherReducer = (state = [], action) => {
   case FETCH_WEATHER:
    return [
     ...state,
-    action.request.data
+    action.payload.data
    ]
    break;
   default:

@@ -1,16 +1,17 @@
-import * as redux from 'redux';
+import {applyMiddleware, createStore, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import ReduxPromise from 'redux-promise';
 
 import {fetchWeatherReducer}  from 'reducers';
 
 export var configure = (initialState = {}) => {
- var reducer = redux.combineReducers({
+ const createStoreWithMiddleware = applyMiddleware(ReduxPromise, thunk)(createStore);
+
+ const reducers = combineReducers({
   weather: fetchWeatherReducer
  });
- const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux.compose;
- var store = redux.createStore(reducer, initialState, composeEnhancers(  redux.applyMiddleware(thunk), redux.applyMiddleware(ReduxPromise)
-));
+
+ const store = createStoreWithMiddleware(reducers, initialState)
 
  return store;
 };

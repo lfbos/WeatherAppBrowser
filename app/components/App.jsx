@@ -6,7 +6,7 @@ import WeatherList from 'WeatherList';
 export class App extends React.Component {
 	render() {
 		return (
-			<div>
+			<div className="container">
 				<SearchBar/>
 				<WeatherList/>
 			</div>
