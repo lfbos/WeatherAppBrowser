@@ -2,18 +2,20 @@ import React from 'react'
 import * as Redux from 'react-redux';
 
 import Chart from 'Chart';
+import SingleMap from 'SingleMap';
 
 export class WeatherList extends React.Component {
 	renderWeather(cityData) {
   if (cityData) {
 		 const name = cityData.city.name;
+			const {lon, lat} = cityData.city.coord;
 			const temps = cityData.list.map(weather => weather.main.temp);
 			const pressures = cityData.list.map(weather => weather.main.pressure);
 			const humidities = cityData.list.map(weather => weather.main.humidity);
 
  		return (
  			<tr key={name}>
- 				<td><h4>{name}</h4></td>
+ 				<td><SingleMap lon={lon} lat={lat}/></td>
 					<td><Chart data={temps} color="orange" units="K"/></td>
 					<td><Chart data={pressures} color="green" units="hPa"/></td>
 					<td><Chart data={humidities} color="black" units="%"/></td>

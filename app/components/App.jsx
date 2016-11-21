@@ -6,7 +6,8 @@ import WeatherList from 'WeatherList';
 export class App extends React.Component {
 	render() {
 		return (
-			<div className="container">
+			<div className="container-fluid">
+				<br/>
 				<SearchBar/>
 				<WeatherList/>
 			</div>
